@@ -16,13 +16,15 @@ public class CleanUp {
 	ArrayList<String> tag_lines = null;
 	ArrayList<String> lang_lines = null;
 	
-	ArrayList<String> captions_new = new ArrayList<String>();
-	ArrayList<String> tags_new = new ArrayList<String>();
-	
 	ArrayList<String> captionsTokens = new ArrayList<String>();
 	ArrayList<String> tagsTokens = new ArrayList<String>();
 	
-	public void removeCapWhole() {
+	BufferedWriter bw1 = IOManager.openWriter("captions.txt");
+	BufferedWriter bw2 = IOManager.openWriter("tags.txt");
+	
+	int index = 0;
+	
+	public void removeCapWhole() throws IOException {
 		for (int i = 0; i < caption_lines.size(); i++) {
 //			if (i != 261219) {
 //				continue;
@@ -70,8 +72,9 @@ public class CleanUp {
 			String tag_new = removeTag(tag_lines.get(i));
 //			System.out.println(tag_new);
 			
-			captions_new.add(id + "\t" + category + "\t" + caption_new);
-			tags_new.add(tag_new);
+			bw1.write(id + "\t" + category + "\t" + caption_new + "\n");
+			bw2.write(tag_new + "\n");
+			index++;
 		}
 		
 	}
@@ -142,23 +145,14 @@ public class CleanUp {
 	}
 	
 	public void genStat() {
-		System.out.println("size: " + captions_new.size());
+		System.out.println("size: " + index);
 		System.out.println("caption unique token num: " + captionsTokens.size());
 		System.out.println("tag unique num: " + tagsTokens.size());
 	}
 	
 	public void output() throws IOException {
-		BufferedWriter bw = IOManager.openWriter("captioning.txt");
-		for (int i = 0; i < captions_new.size(); i++) {
-			bw.write(captions_new.get(i) + "\n");
-		}
-		IOManager.closeWriter(bw);
-		
-		bw = IOManager.openWriter("tag.txt");
-		for (int i = 0; i < tags_new.size(); i++) {
-			bw.write(tags_new.get(i) + "\n");
-		}
-		IOManager.closeWriter(bw);
+		IOManager.closeWriter(bw1);
+		IOManager.closeWriter(bw2);
 	}
 	
 	public void process() throws IOException {
