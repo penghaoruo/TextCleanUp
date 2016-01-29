@@ -157,14 +157,6 @@ public class CleanUp {
 	
 	public void process() throws IOException {
 		WordNetHandler.load();
-		/*
-		System.out.println(WordNetHandler.getLemma("clouds"));
-		System.out.println(WordNetHandler.getLemma("cloudy"));
-		System.out.println(WordNetHandler.getLemma("art"));
-		System.out.println(WordNetHandler.getLemma("artistic"));
-		System.out.println(WordNetHandler.getLemma("grilled"));
-		System.out.println(WordNetHandler.getLemma("grilling"));
-		*/
 		caption_lines = IOManager.readLines(cap_path);
 		tag_lines = IOManager.readLines(tag_path);
 		lang_lines = IOManager.readLines(lang_path);
