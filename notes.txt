@@ -1,0 +1,14 @@
+\noindent {\bf Caption and Tag Filtration} 
+1 Use language detection tool~\cite{lui2011cross} to filter out non-English captions
+2 Clean caption text to get rid of special characters and unrelated info such as \textit{brackets} and \textit{numbers}
+3 Lemmatize all tags and remove redundant ones
+4 Remove redundant synonym tags
+5 Remove redunadant captions
+6 Tokenize and Stemmer all text
+
+original size: 3,035,656
+The number of resulting data entries is 2,315,783
+caption unique token num: 168,601 (before stemmer) 97,209 (after stemmer) 
+tag unique token num: 370,948 (before stemmer) 159,230 (after stemmer) 
+total unique token num: 195,194 (after stemmer)
+We also remove stop words
